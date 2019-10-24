@@ -1,0 +1,7 @@
+.TaskList-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vmin;
+    border: blue 1px solid;
+}

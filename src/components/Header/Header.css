@@ -1,0 +1,8 @@
+
+.App-header {
+  display: flex;
+  height: 6vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(5px + 2vmin);
+}
