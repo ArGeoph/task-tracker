@@ -1,10 +1,13 @@
 import React from 'react';
 import './TaskList.css';
+import { Task } from '../Task/Task';
+import { ITask } from '../../utils/payloadExample';
 
 // Interfaces
 interface Props {
-    text: string;
+    tasks: ITask[];
 }
+// Interfaces end
 
 /**
  *
@@ -12,10 +15,12 @@ interface Props {
  * @constructor
  */
 export const TaskList = (props: Props) => {
+    const { tasks } = props;
+
     return (
         <div className='TaskList-container'>
-            You don't have tasks
+            {tasks.map( task => <Task task={task} />)}
         </div>
     );
-}; // End of functional component
+}; // End of functional component TaskList
 // End of file
