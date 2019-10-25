@@ -3,6 +3,6 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: blue 1px solid;
+    /*border: blue 1px solid;*/
     padding: 1vh 0;
 }
