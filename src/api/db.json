@@ -2,10 +2,24 @@
   "tasks": [
     {
       "name": "Read another article on React Native",
-      "description": "asdfa",
-      "estimate": 0,
+      "description": "Read another article on React Native",
+      "estimate": "2",
       "state": "Planned",
       "id": 1
+    },
+    {
+      "name": "Do shopping for the next week",
+      "description": "Do shopping for the next week",
+      "estimate": "1",
+      "state": "In progress",
+      "id": 2
+    },
+    {
+      "name": "Complete implementing the Settings screen for your mobile app",
+      "description": "Complete implementing the Settings screen for your mobile app",
+      "estimate": "3",
+      "state": "Completed",
+      "id": 3
     }
   ]
 }
