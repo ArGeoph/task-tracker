@@ -1,7 +1,7 @@
 import React from 'react';
 import './TaskList.css';
 import { Task } from '../Task/Task';
-import { ITask } from '../../api/payloadExample';
+import { ITask } from '../../api/PayloadModel';
 
 // Interfaces
 interface Props {
@@ -20,8 +20,13 @@ export const TaskList = (props: Props) => {
 
     return (
         <div className='TaskList-container'>
-            {tasks.map( task => <Task task={task} />)}
-            {errorMessage}
+            {tasks.length > 0 ?
+                <>
+                    <h5> List of tasks</h5>
+                    {tasks.map( task => <Task key={task.id} task={task} />)}
+                </> :
+                errorMessage
+            }
         </div>
     );
 }; // End of functional component TaskList

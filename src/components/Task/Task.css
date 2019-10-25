@@ -1,8 +1,8 @@
 .Task-container {
     border: black 1px solid;
     border-radius: 7px;
-    min-width: 70vmin;
-    max-width: 100vmax;
+    min-width: 50%;
+    /*max-width: 100vmax;*/
     /*max-width: 100%;*/
     min-height: 15vh;
     margin: 0.5vh 0;
@@ -21,4 +21,14 @@
     justify-content: space-around;
     align-items: center;
     border: 1px solid grey;
+}
+
+.Task-status-dropdown {
+    width: 70%;
+}
+
+@media (max-width: 768px) {
+    .Task-container {
+        width: 100%;
+    }
 }

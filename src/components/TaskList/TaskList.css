@@ -1,9 +1,11 @@
 .TaskList-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
-    /*border: blue 1px solid;*/
+    border-radius: 5px;
     padding: 1vh 0;
-    min-height: 60vmin;
+    min-height: 15vh;
+    min-width: 25vh;
+    margin: 2vh 0;
 }

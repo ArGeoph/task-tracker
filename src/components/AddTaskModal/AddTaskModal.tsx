@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Form, Modal } from 'react-bootstrap';
+import './AddTaskModal.css';
+import { Button, Form, Modal, Spinner } from 'react-bootstrap';
 
 /**
  *
@@ -9,11 +10,11 @@ import { Button, Form, Modal } from 'react-bootstrap';
 export const AddTaskModal = (props: any) => {
     // React Hooks
     const [ isTaskAdding, setIsAddingTask ] = useState(false);
+    const [ message, setMessage] = useState('');
     const [ name, setTaskName ] = useState('');
     const [ description, setTaskDescription ] = useState('');
     const [ estimate, setTaskEstimate ] = useState(0);
-    const [ status, setTaskStatus ] = useState('');
-
+    const [ state, setTaskState ] = useState('Planned');
 
     // Extract required variables from props
     const { onHide, show } = props;
@@ -27,11 +28,13 @@ export const AddTaskModal = (props: any) => {
         const form = event.currentTarget;
         event.preventDefault();
 
-        console.log(event);
         // Check if the user filled in all required fields
         if (!form.checkValidity()) {
             event.stopPropagation();
         }
+
+        // Set adding state to true to render spinner
+        setIsAddingTask(true);
 
         // Try to add new task to the server
         fetch('http://localhost:4000/tasks',
@@ -41,17 +44,25 @@ export const AddTaskModal = (props: any) => {
                     'Content-Type': 'application/json'
                 },
                 method: 'POST',
-                body: JSON.stringify({name, description, estimate, status})
+                body: JSON.stringify({name, description, estimate, state})
             })
             .then((response) => {
-                console.log(response);
+                setMessage('The task has been added');
+                setIsAddingTask(false);
             })
-            .catch((error) => { console.log(error) })
+            .catch((error) => {
+                setMessage('Server error occurred. Please try again later!');
+                setIsAddingTask(false);
+            });
     };
 
-    // const handleChange = (event) => {
-    //
-    // };
+    const handleWindowClose = () => {
+        // Clear new task addition message when user closed the modal window
+        setMessage('');
+
+        // Close the add task window
+        onHide();
+    };
     // Event handlers end ==============================================================================================
 
     /**
@@ -59,7 +70,7 @@ export const AddTaskModal = (props: any) => {
      */
     return (
         <Modal
-            onHide={onHide}
+            onHide={handleWindowClose}
             show={show}
             size='lg'
             centered
@@ -89,17 +100,22 @@ export const AddTaskModal = (props: any) => {
 
                     <Form.Group controlId='formTaskStatus'>
                         <Form.Label>Status</Form.Label>
-                        <Form.Control as='select' required onChange={(event: any) => setTaskStatus(event.target.value)} >
+                        <Form.Control as='select' value={state} required onChange={(event: any) => setTaskState(event.target.value)} >
                             <option>Planned</option>
                             <option>In progress</option>
                             <option>Completed</option>
                         </Form.Control>
                     </Form.Group>
 
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <Button onClick={onHide}>Cancel</Button>
+                    <div className='AddTaskModal-button-container' >
+                        <Button onClick={handleWindowClose}>Close</Button>
+                        {message}
                         <Button type='submit'>
-                            Add task
+                            {isTaskAdding ?
+                                <Spinner animation='border' role='status'>
+                                </Spinner> :
+                                'Add new task'
+                            }
                         </Button>
                     </div>
                 </Form>
