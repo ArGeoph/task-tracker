@@ -1,7 +1,7 @@
 import React from 'react';
 import './Task.css';
 import {Button, Form} from 'react-bootstrap';
-import { ITask } from '../../utils/payloadExample';
+import { ITask } from '../../api/payloadExample';
 
 // Interfaces
 interface Props {
@@ -22,25 +22,24 @@ export const Task = (props: Props) => {
      *
      * @param event
      */
-    const handleRemoveTask = (event: any) => {
+    const handleTaskRemoval = (event: any) => {
         // TODO: Dispatch Redux action for adding a new task
-        console.log(event, 'Task Removed');
     };
     // Event handlers end ==============================================================================================
 
     return (
-        <div className='Task-container'>
+        <div className='Task-container' key={task.id}>
             <div>{task.name}</div>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTop: '1px solid grey'}}>
+            <div className='Task-detail'>
                 <div>{task.description}</div>
             </div>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTop: '1px solid grey'}}>
+            <div className='Task-detail'>
                 <div>Estimate: </div>
                 <div>{task.estimate} hours</div>
             </div>
             {/*Status*/}
             <div>
-                <Form.Group style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', border: '1px solid grey'}}>
+                <Form.Group className='Task-status'>
                     <Form.Label>Status</Form.Label>
                     <Form.Control as='select' value={task.state} style={{width: '70%'}} >
                         <option>Planned</option>
@@ -51,7 +50,7 @@ export const Task = (props: Props) => {
             </div>
             {/*Remove Task Button*/}
             <div>
-                <Button onClick={handleRemoveTask}>
+                <Button onClick={handleTaskRemoval}>
                     Remove
                 </Button>
             </div>

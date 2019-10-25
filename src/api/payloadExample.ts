@@ -2,6 +2,7 @@
  *
  */
 export interface ITask {
+    id: number;
     name: string;
     description: string;
     estimate: number;
@@ -11,7 +12,7 @@ export interface ITask {
 /**
  *
  */
-export const payloadExample: ITask[] = [
+export const payloadExample = [
     {
         name: 'Do shopping',
         description: 'Buy groceries at the Co-op for the next week',
@@ -60,5 +61,5 @@ export const payloadExample: ITask[] = [
         estimate: 90,
         state: 'Completed'
     },
-]; // End of payloadExample
+] as ITask[]; // End of payloadExample
 // End of file
