@@ -7,3 +7,8 @@
     padding: 1vh;
     margin: 2vh 0;
 }
+
+.TaskSummary-header {
+    width: 100%;
+    border-bottom: 1px solid deepskyblue;
+}

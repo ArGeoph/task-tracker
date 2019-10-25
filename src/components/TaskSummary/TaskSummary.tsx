@@ -33,7 +33,7 @@ export const TaskSummary = (props: Props) => {
 
     if (tasks.length > 0) {
         return (<div className='TaskSummary-container'>
-            <h5>Tasks Summary</h5>
+            <h5 className='TaskSummary-header'>Tasks Summary</h5>
             <p>Number of all tasks: {tasks.length}</p>
             <p>All Planned Tasks Estimate: {plannedTasksEstimate} hours</p>
             <p>All In progress Tasks Estimate: {inProgressTasksEstimate} hours</p>
